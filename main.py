@@ -1,6 +1,6 @@
 """
 ============================================================
-  3-Pawn Tic-Tac-Toe (Three Men's Morris / Tapatan)
+               𝑻𝒉𝒆 𝑪𝒍𝒂𝒔𝒔𝒊𝒄 𝑳𝒊𝒏𝒆 𝑮𝒂𝒎𝒆
 ============================================================
 Rules:
 1. Drop Phase:
@@ -73,10 +73,10 @@ def get_legal_moves(board, player):
     return moves
 
 
-# ---------------- AI DECISION ENGINE ---------------- #
+# ---------------- DECISION ENGINE ---------------- #
 
-def ai_drop_move(board):
-    """Smart placement logic for the AI during Drop Phase."""
+def drop_move(board):
+    """Smart placement logic for the System during Drop Phase."""
     empty = [i for i, val in enumerate(board) if val is None]
 
     # 1. Immediate Win
@@ -107,8 +107,8 @@ def ai_drop_move(board):
     return empty[0]
 
 
-def ai_movement_move(board):
-    """Smart movement logic for the AI during Movement Phase."""
+def movement_move(board):
+    """Smart movement logic for the System during Movement Phase."""
     moves = get_legal_moves(board, "O")
     if not moves:
         return None
@@ -166,14 +166,14 @@ def ai_movement_move(board):
 
 def main():
     print("=" * 50)
-    print("      3-PAWN TIC-TAC-TOE (Three Men's Morris)     ")
+    print("      𝑻𝒉𝒆 𝑪𝒍𝒂𝒔𝒔𝒊𝒄 𝑳𝒊𝒏𝒆 𝑮𝒂𝒎𝒆     ")
     print("=" * 50)
     print("Game Modes:")
-    print("  1. Player vs AI (You are X, AI is O)")
+    print("  1. Player vs System (You are X, System is O)")
     print("  2. Two Players Local (Pass & Play)")
 
     mode = input("\nSelect mode (1 or 2, default=1): ").strip()
-    is_vs_ai = (mode != "2")
+    is_vs_system = (mode != "2")
 
     board = [None] * 9
     current_player = "X"
@@ -189,9 +189,9 @@ def main():
         print_board(board)
         print(f"Current Turn: {current_player} | Pawns Placed: X={x_placed}/3, O={o_placed}/3")
 
-        if is_vs_ai and current_player == "O":
-            idx = ai_drop_move(board)
-            print(f"🤖 AI places 'O' at: {COORD_NAMES[idx]}")
+        if is_vs_system and current_player == "O":
+            idx = drop_move(board)
+            print(f"🤖 System places 'O' at: {COORD_NAMES[idx]}")
         else:
             while True:
                 user_input = input(f"Enter coordinate to place {current_player} (e.g. B2): ").strip().lower()
@@ -227,13 +227,13 @@ def main():
         print_board(board)
         print(f"Current Turn: {current_player}")
 
-        if is_vs_ai and current_player == "O":
-            move = ai_movement_move(board)
+        if is_vs_system and current_player == "O":
+            move = movement_move(board)
             if not move:
-                print("❌ AI has no legal moves! Player X wins!")
+                print("❌ System has no legal moves! Player X wins!")
                 return
             f, t = move
-            print(f"🤖 AI moves: {COORD_NAMES[f]} -> {COORD_NAMES[t]}")
+            print(f"🤖 System moves: {COORD_NAMES[f]} -> {COORD_NAMES[t]}")
         else:
             legal_moves = get_legal_moves(board, current_player)
             if not legal_moves:

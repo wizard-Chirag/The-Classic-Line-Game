@@ -16,7 +16,7 @@ class ThreePawnsGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("𝑻𝒉𝒆 𝑪𝒍𝒂𝒔𝒔𝒊𝒄 𝑳𝒊𝒏𝒆 𝑮𝒂𝒎𝒆")
-        self.root.geometry("480x670")
+        self.root.geometry("480x720")
         self.root.resizable(False, False)
         self.root.configure(bg="#0f172a")
 
